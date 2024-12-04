@@ -1,0 +1,134 @@
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+    width: 600px;
+    height: 864px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #778897;
+    margin: 0;
+}
+
+.sub-header {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.sub-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+}
+
+.rounded-box {
+    width: 100%;
+    background-color: #D7DEE4;
+    border-radius: 6px;
+    padding: 20px;
+    color: #778897;
+    font-family: Arial, sans-serif;
+}
+
+.tag-info .info {
+    margin-bottom: 15px;
+    display: block;
+}
+
+.tag-info label {
+    font-weight: bold;
+    color: #778897;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.tag-info button {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #0601ae;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.tag-info button:hover {
+    background-color: #040181;
+}
+
+.tag-info button {
+    width: auto;
+}
+
+.tag-name-created-date {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.tag-name-created-date .info {
+    margin: 0;
+}
+
+.tag-name-created-date .info p {
+    margin: 0;
+}
+
+.info {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.info:last-child {
+    border-bottom: none;
+}
+
+.tag-name-created-date {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+footer .btn-primary {
+    background-color: white;
+    color: #778897;
+    border: 1px #778897;
+    font-weight: bold;
+}
+
+footer .btn-primary:hover {
+    background-color: #778897;
+    color: white;
+    border: 1px #778897;
+}
