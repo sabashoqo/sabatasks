@@ -3,109 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tag Details</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add Driver</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 700px;
+            height: auto;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .required {
+            color: red;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header .title-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header img {
+            height: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .header .close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group.flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-group .driver-name-container,
+        .form-group .mobile-container {
+            width: 45%;
+        }
+        .form-group .mobile-wrapper {
+            display: flex;
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .form-group .mobile-wrapper .prefix-container {
+            width: 30%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #ccc;
+        }
+        .form-group .mobile-wrapper .prefix-container select {
+            width: 100%;
+            padding-left: 35px;
+            border: none;
+            background: transparent;
+            appearance: none;
+            height: 100%;
+            font-size: 14px;
+        }
+        .form-group .mobile-wrapper .prefix-container .flag-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 15px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .form-group .mobile-wrapper .number-container {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+        .form-group .mobile-wrapper .number-container input {
+            width: 100%;
+            padding-left: 10px;
+            border: none;
+            height: 100%;
+            font-size: 14px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #778897;
 
-        /* General Page Styles */
-        <link href="task1.css" rel="stylesheet">
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none;
 
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-group button {
+            width: 10%;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .form-group.phone-birth, .form-group.id-job, .form-group.license {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .form-group.phone-birth .phone-container,
+        .form-group.phone-birth .birthdate-container,
+        .form-group.id-job .id-container,
+        .form-group.id-job .job-container,
+        .form-group.license .license-number-container,
+        .form-group.license .license-type-container {
+            width: 48%;
+        }
+        .form-group.phone-birth, .form-group.id-job, .form-group.license {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* زيادة المسافة */
+        }
+         /* تصغير العرض */
+        .form-group.phone-birth .phone-container,
+        .form-group.phone-birth .birthdate-container,
+        .form-group.id-job .id-container,
+        .form-group.id-job .job-container {
+            width: 40%; /* تقليل العرض ليصبح أصغر */
+        }
+
+        .form-group.phone-birth,
+        .form-group.id-job,
+        .form-group.license {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px; /* تقليل المسافة بين الحقول */
+        }
+
+    </style>
 </head>
 <body>
-<!-- Main Container -->
-<div class="container main-container">
-    <!-- Header Section -->
-    <div class="header d-flex justify-content-between align-items-center">
-        <!-- Title with Logo -->
-        <div class="d-flex align-items-center">
-            <img src="Screenshot%202024-11-20%20234445.png" alt="Logo" class="logo">
-            <h2 class="title ms-2">Tag Details</h2>
+<div class="container">
+    <div class="header">
+        <div class="title-container">
+            <img src="logo.png" alt="Logo">
+            <h1>Add Driver</h1>
         </div>
-        <!-- Close Icon -->
-        <button class="btn btn-close" aria-label="Close"></button>
+        <div class="close">&times;</div>
     </div>
+    <form id="driverForm">
+        <!-- Driver Name and Mobile -->
+        <div class="form-group flex">
+            <div class="driver-name-container">
+                <label for="driverName">Driver Name <span class="required">*</span></label>
+                <input type="text" id="driverName" placeholder="E.g Ahmad Mahmoud" required>
+                <div id="nameError" class="error"></div>
+            </div>
 
-    <!-- Sub-header Section -->
-    <div class="sub-header d-flex justify-content-between align-items-center mt-3">
-        <!-- Roaa Tag with Logo -->
-        <div class="d-flex align-items-center">
-            <img src="Screenshot%202024-11-20%20234445.png" alt="Logo" class="logo-small">
-            <h3 class="sub-title ms-2">Roaa Tag</h3>
-        </div>
-        <!-- Edit Tag Information Button -->
-        <button class="btn btn-outline-primary d-flex align-items-center">
-            Edit Tag Information
-            <span class="ms-2">&rarr;</span>
-        </button>
-    </div>
-
-    <!-- Main Content Section -->
-    <div class="rounded-box">
-        <!-- Tag Information -->
-        <div class="tag-info">
-            <!-- Tag Name and Created Date in the same row -->
-            <div class="tag-name-created-date">
-                <div class="info">
-                    <label>Tag Name:</label>
-                    <p>Roaa Tag</p>
+            <div class="mobile-container">
+                <label for="mobilePrefix">Mobile #</label>
+                <div class="mobile-wrapper">
+                    <div class="prefix-container">
+                        <select id="mobilePrefix" onchange="updateFlag()">
+                            <option value="+970" data-flag="pf.png">+970</option>
+                            <option value="+972" data-flag="pf.png">+972</option>
+                            <option value="+962" data-flag="jjf.png">+962</option>
+                            <option value="+44" data-flag="uk_flag.png">+44</option>
+                        </select>
+                        <span id="flagIcon" class="flag-icon" style="background-image: url('pf.png');"></span>
+                    </div>
+                    <div class="number-container">
+                        <input type="text" id="mobile" inputmode="numeric" placeholder="Enter mobile number">
+                    </div>
                 </div>
-                <div class="info">
-                    <label>Created Date:</label>
-                    <p>2023-11-06 16:44:32</p>
-                </div>
-            </div>
-
-            <!-- Accounts Section -->
-            <div class="info">
-                <label>Accounts:</label>
-                <button class="btn btn-custom">Roaa Sawalmeh</button>
-            </div>
-
-            <!-- Units Section -->
-            <div class="info">
-                <label>Units:</label>
-                <button class="btn btn-custom">افيكو دايلي</button>
-                <button class="btn btn-custom">Test Car</button>
-                <button class="btn btn-custom">كادي 1702</button>
-                <button class="btn btn-custom">بوكسر-2512</button>
-                <button class="btn btn-custom">Sprinter-1249</button>
-                <button class="btn btn-custom">مرسيدس 518</button>
-                <button class="btn btn-custom">كادي Aljaber</button>
-                <button class="btn btn-custom">اسوزو</button>
-                <button class="btn btn-custom">اتيكو 1568</button>
-                <button class="btn btn-custom">متسوبيشي هنتر 5160</button>
-                <button class="btn btn-custom">سيات -0054</button>
-            </div>
-
-            <!-- Drivers Section -->
-            <div class="info">
-                <label>Drivers:</label>
-                <button class="btn btn-custom">Firas Sharawai</button>
-                <button class="btn btn-custom">Ashraf Skafi</button>
-                <button class="btn btn-custom">Ahmad</button>
-                <button class="btn btn-custom">Driver1</button>
-                <button class="btn btn-custom">Tawfiq1</button>
-            </div>
-
-            <!-- Areas Section -->
-            <div class="info">
-                <label>Areas:</label>
-                <button class="btn btn-custom">Testttt</button>
-                <button class="btn btn-custom">وكالة هونداي</button>
-                <button class="btn btn-custom">Test Test</button>
-                <button class="btn btn-custom">Roaa Test</button>
-                <button class="btn btn-custom">New Test</button>
+                <div id="mobileError" class="error"></div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <button class="btn btn-primary w-100">Close</button>
-    </footer>
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="E.g Ahmad@email.com">
+            <div id="emailError" class="error"></div>
+        </div>
+
+        <!-- Phone and Birth Date in the same line -->
+        <div class="form-group phone-birth">
+            <div class="phone-container">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" placeholder="000000000">
+                <div id="phoneError" class="error"></div>
+            </div>
+
+            <div class="birthdate-container">
+                <label for="birthdate">Birth Date</label>
+                <input type="date" id="birthdate">
+                <div id="birthdateError" class="error"></div>
+            </div>
+        </div>
+
+        <!-- ID# and Job# in the same line -->
+        <div class="form-group id-job">
+            <div class="id-container">
+                <label for="id">ID#</label>
+                <input type="text" id="id" placeholder="000000000">
+                <div id="idError" class="error"></div>
+            </div>
+
+            <div class="job-container">
+                <label for="job">Job#</label>
+                <input type="text" id="job" placeholder="000000000">
+                <div id="jobError" class="error"></div>
+            </div>
+        </div>
+
+        <!-- License# and License Type -->
+        <div class="form-group license">
+            <div class="license-number-container">
+                <label for="licenseNumber">License# <span class="required">*</span></label>
+                <input type="text" id="licenseNumber" placeholder="12345678" required>
+                <div id="licenseNumberError" class="error"></div>
+            </div>
+
+            <div class="license-type-container">
+                <label for="licenseType">License Type</label>
+                <select id="licenseType">
+                    <option value=""> License Type</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="1">1</option>
+                </select>
+                <div id="licenseError" class="error"></div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="button-group">
+            <button type="button" onclick="clearForm()">Cancel</button>
+            <button type="submit" id="saveButton" disabled>Save</button>
+        </div>
+    </form>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const mobilePrefix = document.getElementById('mobilePrefix');
+    const mobile = document.getElementById('mobile');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const birthdate = document.getElementById('birthdate');
+    const licenseType = document.getElementById('licenseType');
+    const form = document.getElementById('driverForm');
+    const saveButton = document.getElementById('saveButton');
+
+    const driverName = document.getElementById('driverName');
+    const licenseNumber = document.getElementById('licenseNumber');
+
+    // التحقق من صحة المدخلات
+    function validateForm() {
+        let isValid = true;
+
+        // Driver Name: required and min 3 chars
+        if (driverName.value.trim().length < 3) {
+            document.getElementById('nameError').innerText = "The name field is required";
+            isValid = false;
+        } else {
+            document.getElementById('nameError').innerText = "";
+        }
+
+        // License Number: required
+        if (licenseNumber.value.trim().length === 0) {
+            document.getElementById('licenseNumberError').innerText = "License number is required.";
+            isValid = false;
+        } else {
+            document.getElementById('licenseNumberError').innerText = "";
+        }
+
+        // Phone validation (only if it's filled)
+        if (phone.value.trim() && !/^(09|02|04)\d{7}$/.test(phone.value)) {
+            document.getElementById('phoneError').innerText = "Phone number must be 9 digits and start with 09, 02, or 04.";
+            isValid = false;
+        } else {
+            document.getElementById('phoneError').innerText = "";
+        }
+
+        // Mobile validation (only if it's filled)
+        if (mobile.value.trim() && !/^\d{9}$/.test(mobile.value)) {
+            document.getElementById('mobileError').innerText = "Mobile number must be 9 digits.";
+            isValid = false;
+        } else {
+            document.getElementById('mobileError').innerText = "";
+        }
+
+        // Date validation (only if it's filled)
+        if (birthdate.value.trim() && !birthdate.value) {
+            document.getElementById('birthdateError').innerText = "Birth date is invalid.";
+            isValid = false;
+        } else {
+            document.getElementById('birthdateError').innerText = "";
+        }
+
+        // Enable/Disable Save Button
+        saveButton.disabled = !isValid;
+    }
+
+    // استمع لتغييرات الإدخال في الحقول المطلوبة
+    [driverName, licenseNumber, phone, mobile, birthdate].forEach(input => {
+        input.addEventListener('input', validateForm);
+    });
+
+    // التحقق عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', validateForm);
+</script>
+
 </body>
 </html>
